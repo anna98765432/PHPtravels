@@ -5,13 +5,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MainPage  {
+public abstract class MainPage  {
 
     protected WebDriver driver;
 
     public MainPage (WebDriver driver) {
         this.driver = driver;
     }
+
+    public <I extends MainPage, O extends MainPage> O run(scenarios.Scenario<I, O> scenario) {
+        return scenario.run((I)this);
+    }
+
 
     public boolean waitForJStoLoad() {
 

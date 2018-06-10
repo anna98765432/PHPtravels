@@ -9,6 +9,11 @@ public class MainSearchPage extends MainPage{
 
     private String url = "https://www.phptravels.net/";
     @FindBy(xpath= "//li[@data-title='HOTELS']//span[@class='hidden-xs']") private WebElement hotelsBanner;
+    @FindBy(xpath= "//a[@href='#CARS']]") private WebElement carsBanner;
+
+
+
+
 
 
     public MainSearchPage(WebDriver driver) {
@@ -24,6 +29,11 @@ public class MainSearchPage extends MainPage{
     public HotelsSearchPage clickHotelsBanner(){
         hotelsBanner.click();
         return new HotelsSearchPage(driver);
+    }
+
+    public CarsSearchPage clickCarsBanner(){
+        carsBanner.click();
+        return new CarsSearchPage(driver);
     }
 
 
