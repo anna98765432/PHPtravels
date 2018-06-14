@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -11,6 +12,7 @@ public abstract class MainPage  {
 
     public MainPage (WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public <I extends MainPage, O extends MainPage> O run(scenarios.Scenario<I, O> scenario) {

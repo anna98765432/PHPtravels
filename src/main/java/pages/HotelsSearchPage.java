@@ -1,6 +1,7 @@
 package pages;
 
 import assertions.SearchTestAssertion;
+import components.CalendarComponent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -11,7 +12,6 @@ import org.openqa.selenium.support.PageFactory;
 public class HotelsSearchPage extends MainPage {
 
     public SearchTestAssertion hotelSearchAssertion;
-    String lvMonthYear;
 
     @FindBy(xpath = "//div[@id='s2id_autogen8']//span[@class='select2-chosen']")
     private WebElement cityInput;
@@ -31,8 +31,7 @@ public class HotelsSearchPage extends MainPage {
     @FindBy(xpath = "//div[@class='datepicker dropdown-menu' and contains(@style,'display: block')]//table[@class=' " +
             "table-condensed']//th[@class='prev']")
     private WebElement previousMonthSelectArrow;
-    @FindBy(xpath = "//div[@class='datepicker dropdown-menu' and contains(@style,'display: block')]//table[@class=' table-condensed']" +
-            "//th[@class='switch']")
+    @FindBy(xpath = "//div[@class='datepicker dropdown-menu' and contains(@style,'display: block')]//table[@class=' table-condensed']//th[@class='switch']")
     private WebElement monthAndYearReference;
     @FindBy(xpath = "//input[@name='travellers']")
     private WebElement travellersInput;
@@ -88,18 +87,30 @@ public class HotelsSearchPage extends MainPage {
         return this;
     }
 
-    public String  getMonthAndYear() {
-        lvMonthYear = monthAndYearReference.getText();
-        return lvMonthYear;
+    private String  getMonthAndYear() {
+        return monthAndYearReference.getText();
     }
 
     public HotelsSearchPage chooseMonthAndYear(String monthYear) {
-
-        do {
+        getMonthAndYear();
+        while (!getMonthAndYear().equals(monthYear)){
             nextMonthSelectArrow.click();
             getMonthAndYear();
         }
-        while (!lvMonthYear.equals(monthYear));
+
+//        for (getMonthAndYear(); !lvMonthYear.equals(monthYear);  nextMonthSelectArrow.click(),getMonthAndYear())
+//        ;
+
+        return this;
+
+    }
+
+
+    public HotelsSearchPage chooseMonthAndYear1(String monthYear) {
+        while (!monthAndYearReference.equals(monthYear)) {
+            nextMonthSelectArrow.click();
+        }
+        chooseDay("20");
         return this;
 
     }
@@ -108,6 +119,12 @@ public class HotelsSearchPage extends MainPage {
         searchButton.click();
         return new HotelSearchResultPage(driver);
 
+    }
+
+    public HotelsSearchPage pick2DateFromCalendar(int day, CalendarComponent.Month month, int year){
+        new CalendarComponent(driver).pickDateFromCalendar(day, month, year);
+        waitForJStoLoad();
+        return this;
     }
 
 

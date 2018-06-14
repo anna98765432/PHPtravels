@@ -1,3 +1,4 @@
+import components.CalendarComponent;
 import org.testng.annotations.Test;
 import scenarios.SearchHotelScenario;
 
@@ -25,9 +26,8 @@ public class SearchTest extends MainTest {
         mainSearchPage.openTravelPHP()
                 .clickHotelsBanner()
                 .clickCheckInDate()
-                .chooseMonthAndYear(monthAndYearToCheck)
-                .clickCheckInDate()
-                .chooseDay(dayToCheck)
+                .pick2DateFromCalendar(20, CalendarComponent.Month.January,2019)
+                .pick2DateFromCalendar(30, CalendarComponent.Month.March, 2019)
                 .hotelSearchAssertion.hasCorrectDate(dateToCheck);
 
     }
