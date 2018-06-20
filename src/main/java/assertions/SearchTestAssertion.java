@@ -13,7 +13,7 @@ public class SearchTestAssertion extends MainPage {
     public String date1;
     @FindBy(xpath = "//form[@name='fFilters']") private WebElement filterMenu;
     @FindBy(xpath = "//input[@class ='form-control input-lg dpd1']") private WebElement checkInInputEnabled;
-
+    @FindBy(xpath = "//h4/a[contains(@href,'grand-plaza-apartments')]") private WebElement grandPlazaLink;
 
 
     public SearchTestAssertion(WebDriver driver) {
@@ -29,6 +29,10 @@ public class SearchTestAssertion extends MainPage {
         String date1 = checkInInputEnabled.getAttribute("value");
         Assert.assertTrue(date1.equals(date));
 
+    }
+
+    public void hasGrandPlazaBeenFound(){
+        Assert.assertTrue(grandPlazaLink.isDisplayed());
     }
 
 
