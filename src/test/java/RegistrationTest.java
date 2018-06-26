@@ -15,7 +15,9 @@ public class RegistrationTest extends MainTest {
                 .sendEmail("annadwawewqewqeqw@o2.pl")
                 .sendPassword("anna")
                 .sendPasswordConformation("anna")
-                .signUp();
+                .signUp()
+                .registrationAssertion.hasUserRegistered();
+
 
     }
 

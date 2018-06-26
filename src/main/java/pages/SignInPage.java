@@ -51,9 +51,9 @@ public class SignInPage extends MainPage{
         return this;
     }
 
-    public SignInPage signUp(){
+    public LoggedInPage signUp(){
         signUpButton.click();
-        return this;
+        return new LoggedInPage(driver);
     }
 
 
