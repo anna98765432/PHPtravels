@@ -27,7 +27,7 @@ public class SearchTest extends MainTest {
                 .clickHotelsBanner()
                 .clickCheckInDate()
                 .pick2DateFromCalendar(20, CalendarComponent.Month.January,2019)
-                .pick2DateFromCalendar(30, CalendarComponent.Month.March, 2019)
+                .pick2DateFromCalendar(23, CalendarComponent.Month.March, 2019)
                 .hotelSearchAssertion.hasCorrectDate(dateToCheck);
 
     }

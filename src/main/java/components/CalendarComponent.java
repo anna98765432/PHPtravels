@@ -11,7 +11,7 @@ public class CalendarComponent extends MainPage {
 
     @FindBy(css = "[style*='block'] .datepicker-days .next")
     private WebElement nextMonthSelectArrow;
-    @FindBy(css = ".datepicker[style*='block']")
+    @FindBy(xpath = "//*[contains(@class, 'datepicker ') and contains(@style, 'block')]")
     private WebElement visibleCalendar;
     @FindBy(css = "[style*='block'] .datepicker-days .switch")
     private WebElement monthAndYearFromCalendar;
@@ -23,7 +23,8 @@ public class CalendarComponent extends MainPage {
 
     public void pickADay(int day) {
         waitForJStoLoad();
-        visibleCalendar.findElement(By.xpath("//td[text()='" + day + "']")).click();
+        //List<WebElement> lista =
+        visibleCalendar.findElement(By.xpath("//*[contains(@class, 'datepicker ') and contains(@style, 'block')]//td[text()='" + day + "']")).click();
     }
 
     public void clickNextMonth() {
